@@ -14,27 +14,26 @@ public class ProductController {
 
     private final ProductService productService;
 
-//    Create Product
     @PostMapping
-    public ResponseEntity<> createProduct(@RequestBody CreateProductRequest productRequest){
-        return ResponseEntity.accepted(productService.createProduct(productRequest));
+    public ResponseEntity<Void> createProduct(@RequestBody CreateProductRequest productRequest){
+        return ResponseEntity.ok(productService.createProduct(productRequest));
     }
 
-//    Retrieve Products
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> retrieveProduct(@PathVariable Long id){
-        return  ResponseEntity.;
+        return  ResponseEntity.ok(productService.getProduct(id));
     }
 
-//    Update Product
     @PutMapping
-    public ResponseEntity<Void> updateProduct(){
+    public ResponseEntity<Void> updateProduct(@RequestBody CreateProductRequest productRequest){
+        productService.updateProduct(productRequest);
         return null;
     }
 
 //    Deactivate Product:Products should preferably be deactivated rather than physically deleted.
-    @PatchMapping
-    public ResponseEntity<Void> deactivateProduct(){
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> deactivateProduct(@PathVariable Long id){
+        productService.deleteProduct(id);
         return null;
     }
 }

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: product-service
+  datasource:
+    url:jdbc: postgresql:5432/myapp
+    username: postgres
+    password: postgres

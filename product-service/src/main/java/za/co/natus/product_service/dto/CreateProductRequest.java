@@ -1,13 +1,15 @@
 package za.co.natus.product_service.dto;
 
 import jakarta.validation.constraints.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CreateProductRequest {
     @NotBlank(message = "SKU is required")
     @Size(max = 64, message = "SKU must be at most 64 characters")

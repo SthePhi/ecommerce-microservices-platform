@@ -2,6 +2,11 @@ spring:
   application:
     name: product-service
   datasource:
-    url:jdbc: postgresql:5432/myapp
+    url: jdbc:postgresql:myapp
     username: postgres
     password: postgres
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update
+    show-sql: true

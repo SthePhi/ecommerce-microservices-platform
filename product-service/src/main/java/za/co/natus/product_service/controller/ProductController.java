@@ -7,8 +7,10 @@ import za.co.natus.product_service.dto.CreateProductRequest;
 import za.co.natus.product_service.dto.ProductResponse;
 import za.co.natus.product_service.service.ProductService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("api/vi/product")
+@RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -22,6 +24,11 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> retrieveProduct(@PathVariable Long id){
         return  ResponseEntity.ok(productService.getProduct(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductResponse>> retrieveAllProducts(){
+        return ResponseEntity.ok(productService.getAllProducts());
     }
 
     @PutMapping

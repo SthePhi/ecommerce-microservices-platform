@@ -31,9 +31,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProducts());
     }
 
-    @PutMapping
-    public ResponseEntity<Void> updateProduct(@RequestBody CreateProductRequest productRequest){
-        productService.updateProduct(productRequest);
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateProduct(@PathVariable Long id, @RequestBody CreateProductRequest productRequest){
+        productService.updateProduct(id, productRequest);
         return null;
     }
 

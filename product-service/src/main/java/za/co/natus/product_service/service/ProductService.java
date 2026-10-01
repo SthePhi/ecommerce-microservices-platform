@@ -12,7 +12,7 @@ public interface ProductService {
 
     @Nullable ProductResponse getProduct(Long id);
 
-    void updateProduct(CreateProductRequest productRequest);
+    void updateProduct(Long id, CreateProductRequest productRequest);
 
     void deleteProduct(Long id);
 

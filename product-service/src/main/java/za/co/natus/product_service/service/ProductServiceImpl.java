@@ -2,10 +2,10 @@ package za.co.natus.product_service.service;
 
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import za.co.natus.product_service.dto.CreateProductRequest;
 import za.co.natus.product_service.dto.ProductResponse;
+import za.co.natus.product_service.entity.Product;
 import za.co.natus.product_service.mapper.ProductMapper;
 import za.co.natus.product_service.repository.ProductRepository;
 
@@ -31,8 +31,19 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public void updateProduct(CreateProductRequest productRequest) {
+    public void updateProduct(Long id, CreateProductRequest productRequest) {
 
+        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("The Product you want to update, with the ID:: " +id+ " does not exist."));
+        if (product != null){
+            product.setSku(productRequest.getSku());
+            product.setName(productRequest.getName());
+            product.setCategory(productRequest.getCategory());
+            product.setDescription(productRequest.getDescription());
+            product.setPrice(productRequest.getPrice());
+            product.setQuantity(productRequest.getQuantity());
+        }
+
+        productRepository.save(ProductMapper.to(productRequest));
     }
 
     @Override
